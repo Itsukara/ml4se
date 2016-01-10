@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from pandas import Sereis, DataFrame
+from pandas import Series, DataFrame
 
 from numpy.random import normal
 
@@ -14,7 +14,7 @@ def create_dataset(num):
     """
     dataset = DataFrame(columns=['x', 'y'])
     for i in range(num):
-        x = i / num - 1
+        x = i / (num - 1)
         # noize with standard deviation 0.3
         y = np.sin(2 * np.pi * x) + normal(scale=0.3)
         dataset = dataset.append(Series([x,y], index=['x', 'y']),
@@ -25,7 +25,8 @@ def rmse(dataset, f):
     """
     Calicurate Root Mean Square Error
     """
-    for index, line in dataset.rows():
+    err = 0.
+    for index, line in dataset.iterrows():
         x, y = line.x, line.y
         # sigma
         err += 0.5 * (y - f(x))**2
@@ -66,7 +67,7 @@ def main():
     test_set = create_dataset(N)
     df_ws = DataFrame()
 
-    fig = ply.figure()
+    fig = plt.figure()
     for c, m in enumerate(M):
         f, ws = resolve(train_set, m)
         df_ws = df_ws.append(Series(ws, name="M=%d" % m))
@@ -90,7 +91,7 @@ def main():
         subplot.legend(loc=1)
 
     print("Table of the coeffcients")
-    print(df_ws.traspose())
+    print(df_ws.transpose())
     fig.show()
 
     df = DataFrame()
@@ -104,3 +105,6 @@ def main():
 
     df.plot(title='RMS Error', style=['-', '--'], grid=True, ylim=(0, 0.9))
     plt.show()
+
+if __name__ == '__main__':
+    main()
