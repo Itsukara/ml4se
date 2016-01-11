@@ -35,4 +35,4 @@ if __name__ == '__main__':
         subplot.scatter(ds, orig.pdf(ds), marker='o', color='blue')
         subplot.set_xlim(-4,4)
         subplot.set_ylim(0)
-    fig.show()
+    plt.show()
