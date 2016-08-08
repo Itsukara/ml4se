@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 #
-# 混合ベルヌーイ分布による手書き文字分類
+# K-meansによる手書き文字分類
 #
-# 2015/04/24 ver1.0
-# 2016/08/08 ver1.1 サンプルによる初期データ生成、各種表示を追加 by Itsukara
+# 2016/08/08 ver1.1 07-mix_em.pyに06-k_means.pyのコード取り込み by Itsukara
 #
 
 import numpy as np
@@ -41,32 +40,13 @@ def show_figure(mu, cls):
                 if i > C - 1:
                     break
     fig.show()
-    fig.savefig("mixem-figure_2-K{}-{}.png".format(K, time.asctime()[11:19]))
-
-# ベルヌーイ分布
-def bern(x, mu):
-    if False:
-#   Slow code (260 sec when K=14)
-        r = 1.0
-        for x_i, mu_i in zip(x, mu):
-            if x_i == 1:
-                r *= mu_i 
-            else:
-                r *= (1.0 - mu_i)
-    else:
-#   Fast code (70 sec when K=14)
-        x = np.array(x)
-        r1 = mu[x == 1].prod()
-        r2 = (1.0 - mu[x != 1]).prod()
-        r = r1 * r2
-    return r
+    fig.savefig("kmeans-figure_2-K{}-{}{}.png".format(K, time.asctime()[11:19], NS))
 
 
 # Main
 if __name__ == '__main__':
     # トレーニングセットの読み込み
     df = pd.read_csv('sample-images.txt', sep=",", header=None)
-    data_num = len(df)
 
     labels = pd.read_csv('sample-labels.txt', header=None)
     labels = np.array(labels).flatten()
@@ -76,71 +56,70 @@ if __name__ == '__main__':
     print("07-k_means.py: K={}, N={}, C={}, NS={}".format(K, N, C, NS))
 
     # 初期パラメータの設定
-    mix = [1.0/K] * K
-    mu = (rand(28*28*K)*0.5+0.25).reshape(K, 28*28)
+    center = (rand(28*28*K)*0.5+0.25).reshape(K, 28*28)
     if NS > 0:
         for clsi, label in enumerate(unique_labels):
             samples = df[labels == label]
             if NS < len(samples):
                 samples = samples.sample(NS)
-            mu[clsi] = np.array(samples).mean(axis=0)
-
-    for k in range(K):
-        mu[k] /= mu[k].sum()
+            center[clsi] = np.array(samples).mean(axis=0)
 
     fig = plt.figure(figsize=(16,K))
     for k in range(K):
         subplot = fig.add_subplot(K, N+1, k*(N+1)+1)
         subplot.set_xticks([])
         subplot.set_yticks([])
-        subplot.imshow(mu[k].reshape(28,28), cmap=plt.cm.gray_r)
+        subplot.imshow(center[k].reshape(28,28), cmap=plt.cm.gray_r)
     fig.show()
+
+    cls = [0] * len(df)
+    distortion = 0.0
 
     # N回のIterationを実施
     for iter_num in range(N):
         print("iter_num %d" % iter_num)
 
-        # E phase
-        resp = DataFrame()
-        for index, line in df.iterrows():
-            tmp = []
-            for k in range(K):
-                a = mix[k] * bern(line, mu[k])
-                if a == 0:
-                    tmp.append(0.0)
-                else:
-                    s = 0.0
-                    for kk in range(K):
-                        s += mix[kk] * bern(line, mu[kk])
-                    tmp.append(a/s)
-            resp = resp.append([tmp], ignore_index=True)
-
-        # M phase
-        mu = np.zeros((K, 28*28))
+        center_new = []
         for k in range(K):
-            nk = resp[k].sum()
-            mix[k] = nk/data_num
-            for index, line in df.iterrows():
-                mu[k] += line * resp[k][index]
-            mu[k] /= nk
+            center_new.append(np.zeros(28*28))
+        center_new = np.array(center_new)
+        num_points = np.zeros(K, dtype=int)
+        distortion_new = 0.0
 
+        # E Phase: 各データが属するグループ（代表data）を計算
+        for index, line in df.iterrows():
+            min_dist = 28.0 * 28.0
+            for i in range(K):
+                diff = line - center[i]
+                d = sum(diff * diff)
+                if d < min_dist:
+                    min_dist = d
+                    cls[index] = i
+            center_new[cls[index]] += line
+            num_points[cls[index]] += 1
+            distortion_new += min_dist
+
+        # M Phase: 新しい代表imageを計算
+        for k in range(K):
+            if num_points[k] != 0:
+                center_new[k] = center_new[k] / num_points[k]
+            else:
+                print("[WARNING] num_point[{}] == 0".format(k))
             subplot = fig.add_subplot(K, N+1, k*(N+1)+(iter_num+1)+1)
             subplot.set_xticks([])
             subplot.set_yticks([])
-            subplot.imshow(mu[k].reshape(28,28), cmap=plt.cm.gray_r)
+            subplot.imshow(center_new[k].reshape(28,28), cmap=plt.cm.gray_r)
+        center = center_new
+        print("Distortion: J=%d" % distortion_new)
+
         fig.show()
 
-    fig.savefig("mixem-figure_1-K{}-{}.png".format(K, time.asctime()[11:19]))
-
-    # トレーニングセットの文字を分類
-    cls = []
-    for index, line in resp.iterrows():
-        cls.append(np.argmax(line[0:]))
+    fig.savefig("kmeans-figure_1-K{}-{}{}.png".format(K, time.asctime()[11:19], NS))
 
     print("Elapsed = {:.2f} sec.".format(time.time() - start_time))
 
     # 分類結果の表示
-    show_figure(mu, cls)
+    show_figure(center, cls)
 
     def print_histogram(clsi):
         num_labels = {}
