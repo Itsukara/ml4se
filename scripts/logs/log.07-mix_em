@@ -1,0 +1,145 @@
+Python 3.5.2 |Anaconda custom (64-bit)| (default, Jul  2 2016, 17:53:06) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.0.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+Using matplotlib backend: Qt4Agg
+
+In [1]: %run ../07-mix_em.py
+07-k_means.py: K=10, N=20, C=20, NS=0
+GLib-GIO-Message: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+iter_num 0
+iter_num 1
+iter_num 2
+iter_num 3
+iter_num 4
+iter_num 5
+iter_num 6
+iter_num 7
+iter_num 8
+iter_num 9
+iter_num 10
+iter_num 11
+iter_num 12
+iter_num 13
+iter_num 14
+iter_num 15
+iter_num 16
+iter_num 17
+iter_num 18
+iter_num 19
+Elapsed = 49.46 sec.
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]    1     0    10     8    20     4     4    24     4    34  
+[Cluster01]    1     0     1     0    33     1    36     2     0     2  
+[Cluster02]    0     0     0     0     1     0     0    31     0    24  
+[Cluster03]    0    40     3     1     0     1     0     1     2     0  
+[Cluster04]    0    36     0     0     2    15     1     3     3     0  
+[Cluster05]   19     0     0     0     2     1     2     0     0     0  
+[Cluster06]    0     1     2    14     1     4     0     1     5     3  
+[Cluster07]    2     1    23    29     0    15     2     0    31     1  
+[Cluster08]    2     1    23     6     0     6     9     0     4     1  
+[Cluster09]   33     0     2     1     0     4     0     0     0     0  
+
+In [2]: %run ../07-mix_em.py
+07-k_means.py: K=10, N=20, C=20, NS=20
+iter_num 0
+iter_num 1
+iter_num 2
+iter_num 3
+iter_num 4
+iter_num 5
+iter_num 6
+iter_num 7
+iter_num 8
+iter_num 9
+iter_num 10
+iter_num 11
+iter_num 12
+iter_num 13
+iter_num 14
+iter_num 15
+iter_num 16
+iter_num 17
+iter_num 18
+iter_num 19
+Elapsed = 43.00 sec.
+[Label0] #members=214, #correct-members= 50, accuracy=23.4%
+[Label1] #members= 56, #correct-members= 54, accuracy=96.4%
+[Label2] #members= 36, #correct-members= 30, accuracy=83.3%
+[Label3] #members= 28, #correct-members= 27, accuracy=96.4%
+[Label4] #members= 31, #correct-members= 31, accuracy=100.0%
+[Label5] #members= 51, #correct-members= 27, accuracy=52.9%
+[Label6] #members= 44, #correct-members= 41, accuracy=93.2%
+[Label7] #members= 29, #correct-members= 28, accuracy=96.6%
+[Label8] #members= 53, #correct-members= 32, accuracy=60.4%
+[Label9] #members= 58, #correct-members= 43, accuracy=74.1%
+[TOTAL ] #members=600, #correct-members=363, accuracy=60.5%
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]   50     4    31    22    24    18    10    24    14    17  
+[Cluster01]    0    54     0     1     0     0     0     0     1     0  
+[Cluster02]    0     1    30     4     0     0     1     0     0     0  
+[Cluster03]    0     0     0    27     0     0     0     1     0     0  
+[Cluster04]    0     0     0     0    31     0     0     0     0     0  
+[Cluster05]    0    17     2     2     0    27     1     0     1     1  
+[Cluster06]    0     2     0     0     0     1    41     0     0     0  
+[Cluster07]    0     0     0     0     0     0     0    28     0     1  
+[Cluster08]    8     1     1     1     2     3     1     1    32     3  
+[Cluster09]    0     0     0     2     2     2     0     8     1    43  
+
+In [3]: %run ../07-mix_em.py
+07-k_means.py: K=10, N=20, C=20, NS=600
+iter_num 0
+iter_num 1
+iter_num 2
+iter_num 3
+iter_num 4
+iter_num 5
+iter_num 6
+iter_num 7
+iter_num 8
+iter_num 9
+iter_num 10
+iter_num 11
+iter_num 12
+iter_num 13
+iter_num 14
+iter_num 15
+iter_num 16
+iter_num 17
+iter_num 18
+iter_num 19
+Elapsed = 45.33 sec.
+[Label0] #members= 70, #correct-members= 48, accuracy=68.6%
+[Label1] #members= 76, #correct-members= 72, accuracy=94.7%
+[Label2] #members= 61, #correct-members= 53, accuracy=86.9%
+[Label3] #members= 58, #correct-members= 50, accuracy=86.2%
+[Label4] #members= 62, #correct-members= 53, accuracy=85.5%
+[Label5] #members= 49, #correct-members= 36, accuracy=73.5%
+[Label6] #members= 53, #correct-members= 48, accuracy=90.6%
+[Label7] #members= 52, #correct-members= 51, accuracy=98.1%
+[Label8] #members= 46, #correct-members= 35, accuracy=76.1%
+[Label9] #members= 73, #correct-members= 57, accuracy=78.1%
+[TOTAL ] #members=600, #correct-members=503, accuracy=83.8%
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]   48     0     6     4     3     2     2     0     3     2  
+[Cluster01]    0    72     1     1     0     0     0     0     2     0  
+[Cluster02]    3     0    53     2     0     0     3     0     0     0  
+[Cluster03]    0     1     0    50     0     6     0     1     0     0  
+[Cluster04]    0     0     0     0    53     2     0     4     1     2  
+[Cluster05]    0     3     3     0     0    36     1     0     5     1  
+[Cluster06]    1     1     1     0     1     1    48     0     0     0  
+[Cluster07]    0     0     0     0     0     0     0    51     0     1  
+[Cluster08]    6     2     0     0     0     1     0     0    35     2  
+[Cluster09]    0     0     0     2     2     3     0     6     3    57  
+
+

@@ -18,7 +18,7 @@ from numpy.random import randint, rand
 K  = 10   # 分類する文字数
 N  = 20   # 反復回数
 C  = 20   # 図の表示カラム数
-NS =100   # 初期データを生成する際に使うサンプル数(0:サンプル未使用)
+NS =600   # 初期データを生成する際に使うサンプル数(0:サンプル未使用)
 
 # 分類結果の表示
 def show_figure(mu, cls):
@@ -40,7 +40,7 @@ def show_figure(mu, cls):
                 if i > C - 1:
                     break
     fig.show()
-    fig.savefig("kmeans-figure_2-K{}-{}{}.png".format(K, time.asctime()[11:19], NS))
+    fig.savefig("kmeans-figure_2-K{}-NS{}-{}.png".format(K, NS, time.asctime()[11:19]))
 
 
 # Main
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
         fig.show()
 
-    fig.savefig("kmeans-figure_1-K{}-{}{}.png".format(K, time.asctime()[11:19], NS))
+    fig.savefig("kmeans-figure_1-K{}-NS{}-{}.png".format(K, NS, time.asctime()[11:19]))
 
     print("Elapsed = {:.2f} sec.".format(time.time() - start_time))
 

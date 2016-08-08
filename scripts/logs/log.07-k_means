@@ -1,0 +1,212 @@
+Python 3.5.2 |Anaconda custom (64-bit)| (default, Jul  2 2016, 17:53:06) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.0.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+Using matplotlib backend: Qt4Agg
+
+In [1]: %run ../07-k_means.py
+07-k_means.py: K=10, N=20, C=20, NS=0
+GLib-GIO-Message: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+iter_num 0
+[WARNING] num_point[2] == 0
+[WARNING] num_point[8] == 0
+[WARNING] num_point[9] == 0
+Distortion: J=123224
+iter_num 1
+[WARNING] num_point[8] == 0
+[WARNING] num_point[9] == 0
+Distortion: J=36152
+iter_num 2
+[WARNING] num_point[8] == 0
+[WARNING] num_point[9] == 0
+Distortion: J=33859
+iter_num 3
+[WARNING] num_point[9] == 0
+Distortion: J=32271
+iter_num 4
+Distortion: J=31486
+iter_num 5
+Distortion: J=30979
+iter_num 6
+Distortion: J=30772
+iter_num 7
+Distortion: J=30695
+iter_num 8
+Distortion: J=30654
+iter_num 9
+Distortion: J=30639
+iter_num 10
+Distortion: J=30634
+iter_num 11
+Distortion: J=30624
+iter_num 12
+Distortion: J=30605
+iter_num 13
+Distortion: J=30555
+iter_num 14
+Distortion: J=30470
+iter_num 15
+Distortion: J=30386
+iter_num 16
+Distortion: J=30326
+iter_num 17
+Distortion: J=30282
+iter_num 18
+Distortion: J=30257
+iter_num 19
+Distortion: J=30250
+Elapsed = 29.97 sec.
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]   41     0     0     0     0     1     1     0     0     0  
+[Cluster01]    2     1     2     0     1    24     0     0     1     1  
+[Cluster02]    0    76     9     1     2     1     3     4     4     0  
+[Cluster03]    3     1    11    31     0     3     0     0    31     1  
+[Cluster04]    1     0     7     4    26     1     5    18     3    29  
+[Cluster05]    7     1     4    23     0    19     1     0     9     3  
+[Cluster06]    0     0     2     0    21     1     0    38     1    31  
+[Cluster07]    4     0    28     0     2     1    44     0     0     0  
+[Cluster08]    0     0     0     0     7     0     0     2     0     0  
+[Cluster09]    0     0     1     0     0     0     0     0     0     0  
+
+In [2]: %run ../07-k_means.py
+07-k_means.py: K=10, N=20, C=20, NS=20
+iter_num 0
+Distortion: J=31320
+iter_num 1
+Distortion: J=29904
+iter_num 2
+Distortion: J=29737
+iter_num 3
+Distortion: J=29691
+iter_num 4
+Distortion: J=29648
+iter_num 5
+Distortion: J=29599
+iter_num 6
+Distortion: J=29552
+iter_num 7
+Distortion: J=29531
+iter_num 8
+Distortion: J=29527
+iter_num 9
+Distortion: J=29515
+iter_num 10
+Distortion: J=29508
+iter_num 11
+Distortion: J=29498
+iter_num 12
+Distortion: J=29489
+iter_num 13
+Distortion: J=29483
+iter_num 14
+Distortion: J=29470
+iter_num 15
+Distortion: J=29453
+iter_num 16
+Distortion: J=29446
+iter_num 17
+Distortion: J=29443
+iter_num 18
+Distortion: J=29441
+iter_num 19
+Distortion: J=29441
+Elapsed = 30.23 sec.
+[Label0] #members= 53, #correct-members= 51, accuracy=96.2%
+[Label1] #members= 96, #correct-members= 74, accuracy=77.1%
+[Label2] #members= 41, #correct-members= 39, accuracy=95.1%
+[Label3] #members= 74, #correct-members= 46, accuracy=62.2%
+[Label4] #members= 56, #correct-members= 45, accuracy=80.4%
+[Label5] #members= 45, #correct-members= 24, accuracy=53.3%
+[Label6] #members= 58, #correct-members= 47, accuracy=81.0%
+[Label7] #members= 48, #correct-members= 30, accuracy=62.5%
+[Label8] #members= 38, #correct-members= 34, accuracy=89.5%
+[Label9] #members= 91, #correct-members= 39, accuracy=42.9%
+[TOTAL ] #members=600, #correct-members=429, accuracy=71.5%
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]   51     0     0     0     0     1     1     0     0     0  
+[Cluster01]    0    74    11     1     1     1     2     3     3     0  
+[Cluster02]    0     0    39     1     0     0     0     1     0     0  
+[Cluster03]    0     0     2    46     0    19     0     0     6     1  
+[Cluster04]    0     0     1     0    45     0     2     2     1     5  
+[Cluster05]    2     2     2     0     2    24     2     4     1     6  
+[Cluster06]    4     0     3     0     2     1    47     0     1     0  
+[Cluster07]    0     0     2     2     0     0     0    30     0    14  
+[Cluster08]    1     1     0     1     0     1     0     0    34     0  
+[Cluster09]    0     2     4     8     9     4     0    22     3    39  
+
+In [3]: %run ../07-k_means.py
+07-k_means.py: K=10, N=20, C=20, NS=600
+iter_num 0
+Distortion: J=30312
+iter_num 1
+Distortion: J=29852
+iter_num 2
+Distortion: J=29720
+iter_num 3
+Distortion: J=29631
+iter_num 4
+Distortion: J=29579
+iter_num 5
+Distortion: J=29546
+iter_num 6
+Distortion: J=29528
+iter_num 7
+Distortion: J=29506
+iter_num 8
+Distortion: J=29499
+iter_num 9
+Distortion: J=29495
+iter_num 10
+Distortion: J=29494
+iter_num 11
+Distortion: J=29494
+iter_num 12
+Distortion: J=29494
+iter_num 13
+Distortion: J=29494
+iter_num 14
+Distortion: J=29494
+iter_num 15
+Distortion: J=29494
+iter_num 16
+Distortion: J=29494
+iter_num 17
+Distortion: J=29494
+iter_num 18
+Distortion: J=29494
+iter_num 19
+Distortion: J=29494
+Elapsed = 30.97 sec.
+[Label0] #members= 51, #correct-members= 49, accuracy=96.1%
+[Label1] #members= 79, #correct-members= 57, accuracy=72.2%
+[Label2] #members= 42, #correct-members= 39, accuracy=92.9%
+[Label3] #members= 71, #correct-members= 46, accuracy=64.8%
+[Label4] #members= 57, #correct-members= 45, accuracy=78.9%
+[Label5] #members= 84, #correct-members= 30, accuracy=35.7%
+[Label6] #members= 57, #correct-members= 46, accuracy=80.7%
+[Label7] #members= 49, #correct-members= 38, accuracy=77.6%
+[Label8] #members= 39, #correct-members= 34, accuracy=87.2%
+[Label9] #members= 71, #correct-members= 47, accuracy=66.2%
+[TOTAL ] #members=600, #correct-members=431, accuracy=71.8%
+***** Histogram of labels *****
+               0     1     2     3     4     5     6     7     8     9  
+--------------------------------------------------------------------------------
+[Cluster00]   49     0     0     0     0     1     1     0     0     0  
+[Cluster01]    0    57    10     1     1     0     1     6     2     1  
+[Cluster02]    1     0    39     1     0     0     0     1     0     0  
+[Cluster03]    0     0     2    46     0    16     0     0     6     1  
+[Cluster04]    0     0     1     0    45     0     3     2     1     5  
+[Cluster05]    3    21     5     7     5    30     3     4     2     4  
+[Cluster06]    4     0     2     0     2     1    46     1     1     0  
+[Cluster07]    0     0     2     2     0     0     0    38     0     7  
+[Cluster08]    1     1     0     1     0     2     0     0    34     0  
+[Cluster09]    0     0     3     1     6     1     0    10     3    47  
+
